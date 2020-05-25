@@ -12,7 +12,7 @@ class MigrateUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'migrate:update {--m|migrate} {--s|seed} {--status}';
+    protected $signature = 'migrate:update {--m|migrate} {--s|seed} {--t|status}';
 
     /**
      * The console command description.
@@ -60,26 +60,50 @@ class MigrateUpdate extends Command
             /*
              * Find all of functions, procedures, triggers and views migrations in directories
              */
-            $migrations_to_rerun = array_merge(
-                $functions = array_diff( scandir( database_path() . '/migrations/' . config('cutlet-migrate.functions_path') ), [ '.', '..' ] ),
-                $procedures = array_diff( scandir( database_path() . '/migrations/' . config('cutlet-migrate.procedures_path') ), [ '.', '..' ] ),
-                $triggers = array_diff( scandir( database_path() . '/migrations/' . config('cutlet-migrate.triggers_path') ), [ '.', '..' ] ),
-                $views = array_diff( scandir( database_path() . '/migrations/' . config('cutlet-migrate.views_path') ), [ '.', '..' ] )
-            );
+            $configs = [
+                'functions' => config('cutlet-migrate.functions_path'),
+                'procedures' => config('cutlet-migrate.procedures_path'),
+                'triggers' => config('cutlet-migrate.triggers_path'),
+                'views' => config('cutlet-migrate.views_path'),
+            ];
 
-            foreach( $migrations_to_rerun as $index => $name ){
-                $migrations_to_rerun[ $index ] = "'" . basename( $name, '.php' ) . "'";
+            $directories = [
+                'functions' => database_path() . '/migrations/' . $configs['functions'],
+                'procedures' => database_path() . '/migrations/' . $configs['procedures'],
+                'triggers' => database_path() . '/migrations/' . $configs['triggers'],
+                'views' => database_path() . '/migrations/' . $configs['views'],
+            ];
+
+            foreach ($directories as $key => $value) {
+                if (! file_exists( $value ) && ! is_dir( $value )) {
+                    mkdir($value, 0777, true);
+                }
             }
 
-            $migrations_to_rerun = implode( ",", $migrations_to_rerun );
+            $migrations_to_rerun = array_merge(
+                $functions = array_diff( scandir( $directories['functions'] ), [ '.', '..' ] ),
+                $procedures = array_diff( scandir( $directories['procedures'] ), [ '.', '..' ] ),
+                $triggers = array_diff( scandir( $directories['triggers'] ), [ '.', '..' ] ),
+                $views = array_diff( scandir( $directories['views'] ), [ '.', '..' ] )
+            );
 
-            /*
-             * Delete functions, procedures, triggers and views migrations
-             * from migrations table and migrate again this migrations ...
-             */
-            DB::table('migrations')->whereIn('migration', $migrations_to_rerun)->delete();
+            if (! empty($migrations_to_rerun)) {
+                foreach( $migrations_to_rerun as $index => $name ) {
+                    $migrations_to_rerun[ $index ] = "'" . basename( $name, '.php' ) . "'";
+                }
 
-            $this->call('migrate');
+                $migrations_to_rerun = implode( ",", $migrations_to_rerun );
+
+                /*
+                 * Delete functions, procedures, triggers and views migrations
+                 * from migrations table and migrate again this migrations ...
+                 */
+                DB::statement("delete from migrations where migration in ( $migrations_to_rerun )");
+
+                foreach ($configs as $key => $value) {
+                    $this->call('migrate', ['--path' => 'database/migrations/' . $value]);
+                }
+            }
 
             /*
              * If you use this option, show the migrations table status for you after migrated all migrations

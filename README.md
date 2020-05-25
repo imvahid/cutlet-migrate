@@ -7,7 +7,7 @@ composer require va/cutlet-migrate
 
 ```
 
-#### Publish Config and Views
+#### Publish Config
 
 ```
 
