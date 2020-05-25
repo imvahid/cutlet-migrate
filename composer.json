@@ -1,0 +1,38 @@
+{
+  "name": "va/cutlet-migrate",
+  "description": "A package to use migrate:update command with options for migrations in custom directories in laravel apps.",
+  "keywords": [
+    "laravel",
+    "migrations",
+    "migration",
+    "laravel-migrations",
+    "laravel-migration",
+    "laravel7-package",
+    "PHP",
+    "laravel7"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-recaptcha",
+  "authors": [
+    {
+      "name": "Vahid Ashourzadeh",
+      "email": "v.ashourzadeh@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3|7.2.*|7.3.*|7.4.*",
+    "laravel/framework": "~5.8|6.*|7.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Va\\CutletMigrate\\": "src/CutletMigrate/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Va\\CutletMigrate\\CutletMigrateServiceProvider"
+      ]
+    }
+  }
+}
