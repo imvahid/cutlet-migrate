@@ -1,4 +1,9 @@
 # Laravel Cutlet migrate
+[![GitHub issues](https://img.shields.io/github/issues/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate?style=flat-square)](https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate/issues)
+[![GitHub stars](https://img.shields.io/github/stars/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate?style=flat-square)](https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate?style=flat-square)](https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate/network)
+[![GitHub license](https://img.shields.io/github/license/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate?style=flat-square)](https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate/blob/master/LICENSE)
+
 ### Installation
 
 ```
