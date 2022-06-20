@@ -52,16 +52,16 @@ Use this command once time in project after install cutlet-migrate:
 php artisan migrate:update
 
 ## Create a function:
-php artisan make:migration cutlet_function --path=database/migrations/mysql/functions
+php artisan make:migration function_name --path=database/migrations/mysql/functions
 
 ## Create a procedure:
-php artisan make:migration cutlet_procedure --path=database/migrations/mysql/procedures
+php artisan make:migration procedure_name --path=database/migrations/mysql/procedures
 
 ## Create a trigger:
-php artisan make:migration cutlet_trigger --path=database/migrations/mysql/triggers
+php artisan make:migration trigger_name --path=database/migrations/mysql/triggers
 
 ## Create a view:
-php artisan make:migration cutlet_view --path=database/migrations/mysql/views
+php artisan make:migration view_name --path=database/migrations/mysql/views
 ```
 
 #### How to write functions, procedures, triggers and views in migrations:

@@ -9,7 +9,9 @@
     "laravel-migration",
     "laravel7-package",
     "PHP",
-    "laravel7"
+    "laravel7",
+    "laravel8",
+    "laravel9"
   ],
   "license": "MIT",
   "homepage": "https://github.com/va1hi9da9sh2ou0rz2ad1eh7/cutlet-migrate",
@@ -20,8 +22,8 @@
     }
   ],
   "require": {
-    "php": "7.1.*|7.2.*|7.3.*|7.4.*",
-    "laravel/framework": "5.8.*|6.*|7.*|8.*"
+    "php": "^7.*|^8.*",
+    "laravel/framework": "^5.8.*|^6.*|^7.*|^8.*|^9.*"
   },
   "autoload": {
     "psr-4": {
