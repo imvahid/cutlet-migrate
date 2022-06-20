@@ -7,17 +7,13 @@
 ### Installation
 
 ```
-
 composer require va/cutlet-migrate
-
 ```
 
 #### Publish Config
 
 ```
-
 php artisan vendor:publish --tag=cutlet-migrate
-
 ```
 
 #### Usage
@@ -35,7 +31,7 @@ or
 php artisan migrate:update -h
 ```
 and you can customize the mysql migrations directories:
-```
+```php
 return [
     /*
      * It's from 'database/migrations/' path..
@@ -65,7 +61,7 @@ php artisan make:migration view_name --path=database/migrations/mysql/views
 ```
 
 #### How to write functions, procedures, triggers and views in migrations:
-```
+```php
 ## Write a function:
 
 <?php
@@ -111,7 +107,7 @@ class CutletFunction extends Migration
     }
 }
 ```
-```
+```php
 ## Write a procedure:
 
 <?php
@@ -155,7 +151,7 @@ class CutletProcedure extends Migration
     }
 }
 ```
-```
+```php
 ## Write a trigger:
 
 <?php
@@ -195,7 +191,7 @@ class CutletTrigger extends Migration
     }
 }
 ```
-```
+```php
 ## Write a view:
 
 <?php
@@ -236,23 +232,19 @@ class CutletView extends Migration
 ```
 
 #### How to use functions, procedures, triggers and views in controllers or repositories:
-```
+```php
 ## Use functions:
-
 $cutlet = DB::select('select cutletFunction(?,?) as cutletField', [$request->param1, $request->param2]);
-or ..
+// or ..
 
-## Use procedures:
-
+## Use procedures
 $cutlets = DB::select('call cutletProcedure(?)', [$request->param1]);
 or ..
 
 ## Use triggers:
-
-It's execute auto in mysql level
+// It's execute auto in mysql level
 
 ## Use views:
-
 $cutlets = DB::table('cutletView');
 ```
 
