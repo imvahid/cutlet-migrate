@@ -22,8 +22,8 @@
     }
   ],
   "require": {
-    "php": "^7.*|^8.*",
-    "laravel/framework": "^5.8.*|^6.*|^7.*|^8.*|^9.*"
+    "php": "7.*|8.*",
+    "laravel/framework": "5.8.*|^6.3|7.*|8.*|9.*"
   },
   "autoload": {
     "psr-4": {
